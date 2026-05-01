@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import Login from './pages/login'
 import Home from './pages/home'
+import Team from './pages/team'
 import { useEffect } from 'react'
 import './App.css'
 
@@ -56,6 +57,10 @@ export default function App() {
         <Route
           path="/home"
           element={loggedIn ? <Home /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/teams/:teamId"
+          element={<Team />}
         />
       </Routes>
     </Router>
