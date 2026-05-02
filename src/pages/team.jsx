@@ -39,7 +39,7 @@ export default function Team() {
             <h2>{team ? team.name : " "}</h2>
 
             {projects.map((p) => (
-                <div key={p.id} onClick={() => navigate(`/teams/${team.id}/projects/${p.id}`)} style={{ cursor: "pointer" }}>
+                <div key={p.id} onClick={() => navigate(`/projects/${p.id}`)} style={{ cursor: "pointer" }}>
                     {p.name}
                 </div>
             ))}

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from './pages/login'
 import Home from './pages/home'
 import Team from './pages/team'
+import Project from './pages/project'
 import { useEffect } from 'react'
 import './App.css'
 
@@ -60,7 +61,11 @@ export default function App() {
         />
         <Route
           path="/teams/:teamId"
-          element={<Team />}
+          element={loggedIn? <Team /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/projects/:projectId"
+          element={loggedIn? <Project /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>
