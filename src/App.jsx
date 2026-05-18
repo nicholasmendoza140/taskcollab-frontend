@@ -4,6 +4,8 @@ import Login from './pages/login'
 import Home from './pages/home'
 import Team from './pages/team'
 import Project from './pages/project'
+import Task from './pages/task'
+import Layout from './components/Layout'
 import { useEffect } from 'react'
 import './App.css'
 
@@ -55,18 +57,17 @@ export default function App() {
           path="/login"
           element={loggedIn ? <Navigate to="/home" /> : <Login setLoggedIn={setLoggedIn} />}
         />
-        <Route
-          path="/home"
-          element={loggedIn ? <Home /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/teams/:teamId"
-          element={loggedIn? <Team /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/projects/:projectId"
-          element={loggedIn? <Project /> : <Navigate to="/login" />}
-        />
+        {loggedIn ? ( 
+          <Route element={<Layout setLoggedIn={setLoggedIn} />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/teams/:teamId" element={<Team />} />
+            <Route path="/projects/:projectId" element={<Project />} />
+            <Route path="/tasks/:taskId" element={<Task />} />
+          </Route>
+        ) : (
+          <Route path="*" element={<Navigate to="/login" />} />
+        )}
+        
       </Routes>
     </Router>
   )
